@@ -1,0 +1,56 @@
+# PROGRESS LOG — TURKEY SHOOT (append-only)
+
+2026-09-23 09:40 — Initial state
+- Project is EMPTY. Nothing built yet.
+- Harness in place: PRD.md (requirements), ralph.sh (loop), progress.txt (this file).
+- NEXT STEPS (first round): build the complete game per PRD.md — index.html,
+  serve.js, package.json, game.js, test.js, tests/game.spec.js. Follow PRD
+  sections 2-8 exactly. Then run section 9 verification and fix failures.
+- STATUS: NOT DONE
+
+2026-09-23 09:53 — Round 2: Full game built and verified
+- WHAT I DID:
+  - Built the complete game per PRD: index.html (canvas, letterbox), serve.js
+    (zero-dep static server on 8137), package.json (start/test scripts), game.js
+    (~1900 lines vanilla JS: all rendering/gameplay/audio), test.js (smoke test),
+    tests/game.spec.js (Playwright E2E).
+  - Gameplay: waves (4+2N turkeys, scaling speed/spawn), edge + mound spawns with
+    dust bursts, WANDER/DART/DIG/FLEE behaviours, garden drains 3%/s per digger,
+    wave-break banner + 10% patch heal, boss BIG BAZZA every 5th wave (10 hits,
+    health bar, screams + cowering + shockwave, clods flung at camera leaving
+    splats, guaranteed meat tray drop), power-ups at 12% (Bunnings Snag = 12
+    shells, Meat Tray = +500 + flash, Garden Gnome = +15% patch), combo x2-x5
+    within 2s, air-shot +25% on leaping hits, 6-shell magazine with 0.8s pump
+    reload (R/Space), empty click, pause (P/Esc), mute (M), touch support.
+  - Graphics: procedural cartoon vector art, offscreen parallax layers (sky/sun/
+    mountains, eucalyptus trees + koala, corrugated fence + BEWARE OF TURKEYS
+    sign, lawn with mowing stripes), Hills Hoist with swaying towels, 3 degrading
+    garden beds + gnome, animated turkeys (fan tail flick, wattle jiggle, head
+    bob, leg shuffle, hop/air-shot, feather-burst somersault deaths), muzzle
+    flash, screen shake, hit-stop, floating score popups, speech-bubble ticker,
+    tilting wooden health sign, shell icons HUD, koala covers eyes on miss streak.
+  - Audio: fully synthesised Web Audio (shot, empty click, reload clack-clack,
+    FM squawks, dig scrunch, power-up blip, didgeridoo wave horn, sad-trombone
+    game over, kookaburra ambient, Bazza scream, splat) — gesture-gated, never throws.
+  - Fixes made during verification: Hills Hoist drawn over ground (was hidden),
+    Hills Hoist towel translate bug (relative dx used as absolute x — towels were
+    off-screen), fence sign moved so it never collides with title/Hoist, title
+    turkey starts on-screen.
+  - npm: installed devDependency playwright@1.63.0 + @playwright/test@1.63.0 and
+    chromium headless shell (per PRD section 9; the ONLY allowed npm install).
+- VERIFICATION (all pass):
+  - node --check on serve.js, game.js, test.js, tests/game.spec.js: OK.
+  - node test.js: PASS (server up, / 200 + <canvas>, /game.js 200, 404 works).
+  - npx playwright test: 1 passed — zero console/page errors, game startable,
+    score increments on a real mouse click on a turkey, game over reachable via
+    damage(100), screenshots captured (shots/title.png, gameplay.png, gameover.png).
+  - Extra probe (Playwright): pause/resume via P, reload via R and Space refills
+    mag, boss spawns on wave 5 (shots/boss.png), meat tray +500, snag gives 12
+    shells, mute toggle, restart resets health, zero console errors.
+  - Visual check of shots/: polished colourful backyard, visible turkeys, HUD,
+    crosshair, power-ups, boss health bar.
+- WHAT REMAINS: nothing known — all PRD sections 2-8 implemented and section 9
+  verification passes; section 10 Definition of DONE satisfied.
+- NEXT STEPS: none required. If the loop continues: optionally play-test for
+  balance (wave 3+ difficulty), consider extra juice. Do not touch DONE.
+- STATUS: DONE

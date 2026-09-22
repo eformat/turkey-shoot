@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>TURKEY SHOOT — Backyard Battle</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: #0b0e14;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  #game {
+    cursor: none;
+    touch-action: none;
+    display: block;
+    background: #6db3e8;
+  }
+</style>
+</head>
+<body data-screen="title">
+<canvas id="game" width="1280" height="720"></canvas>
+<script src="game.js"></script>
+</body>
+</html>
