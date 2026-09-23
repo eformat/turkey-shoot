@@ -57,3 +57,7 @@ GitHub Actions* on the repo. Click, shoot, repeat.
   [`ralph.sh`](ralph.sh), progress in [`progress.txt`](progress.txt).
 - Tests: `node test.js` (smoke) and `npx playwright test` (visual + gameplay,
   screenshots in [`shots/`](shots)).
+
+GLM-5.3-Flash used with this prompt to make this game.
+
+![TURKEY SHOOT prompt](shots/turkey-shoot-prompt.png)
